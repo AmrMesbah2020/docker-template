@@ -59,6 +59,7 @@ services:
             - ./node_modules:/usr/src/node_modules
         tty: true
 
+    # mongoDB Server
     mongo:
         image: mongo:latest
         restart: always
@@ -80,5 +81,12 @@ services:
             ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_DB_PASSWORD}
             ME_CONFIG_MONGODB_URL: mongodb://${MONGO_DB_USERNAME}:${MONGO_DB_PASSWORD}@mongo:27017/?authSource=admin
             ME_CONFIG_BASICAUTH: false
+
+    # Mailhog Server
+    mailhog:
+        image: 'mailhog/mailhog:latest'
+        ports:
+        - "1025:1025"
+        - "8125:8025"
 volumes:
     db-data: ~
